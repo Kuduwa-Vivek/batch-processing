@@ -1,0 +1,20 @@
+Date,Project Name,Job Name,Employee Id,Email ID,First name,Last name,Work Item,Hour(s),Billing Status,Approval Status,Description
+04-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,"deployed Auth-service,shopping-service, server, liquibase, library to production"
+05-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,"Implemented Api  ""/buildings/{buildingId}/rooms"" and created table"
+06-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Fix the bugs
+07-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Resolved errors and deployed to staging
+08-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,created column and update the database
+11-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,"Worked on existing Api ""building"""
+13-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Refactor Api's
+14-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Refactor Api's
+15-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Updated the database
+18-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Refactored the Building Api
+19-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Refactored the Template-university-Api
+20-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Worked on Template view Controller
+21-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Added GroupItems to GetSingleLayoutViewController
+22-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Deployed to Staging and tested Successfully
+25-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Added ConfigStyles to GetSingleViewLayout Controller
+26-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Deployed to staging and tested successfully
+27-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Updated the database
+28-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Work on Authentication
+29-Nov-2024,Roomie,Development,2027,vivek.kuduwa@apptware.com,Vivek,Kuduwa,Development,8,Non Billable,Approved,Optimise the Code and the database
