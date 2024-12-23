@@ -12,9 +12,9 @@ public class AuthenticationApplication {
 		SpringApplication.run(AuthenticationApplication.class, args);
 	}
 
-	@Bean
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
+//	@Bean
+//	public RestTemplate getRestTemplate() {
+//		return new RestTemplate();
+//	}
 
 }

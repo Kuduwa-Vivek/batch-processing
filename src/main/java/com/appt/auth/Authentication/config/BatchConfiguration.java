@@ -2,28 +2,23 @@ package com.appt.auth.Authentication.config;
 
 import com.appt.auth.Authentication.entity.Person;
 import com.appt.auth.Authentication.repo.PersonRepository;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.core.step.tasklet.TaskletStep;
 import org.springframework.batch.item.data.RepositoryItemWriter;
-
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
-
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 
 @Configuration
 @EnableBatchProcessing
@@ -45,7 +40,6 @@ public class BatchConfiguration {
     return itemReader;
   }
 
-  @Bean
   private LineMapper<Person> lineMapper() {
     DefaultLineMapper<Person> lineMapper = new DefaultLineMapper<>();
     DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
@@ -87,6 +81,7 @@ public class BatchConfiguration {
     return new PersonItemProcessor();
   }
 
+  @Bean
   public Step step1() {
     return stepBuilderFactory
         .get("scv-step")
@@ -94,6 +89,7 @@ public class BatchConfiguration {
         .reader(reader())
         .processor(processor())
         .writer(writer())
+        .taskExecutor(taskExecutor())
         .build();
   }
 
@@ -102,48 +98,11 @@ public class BatchConfiguration {
     return jobBuilderFactory.get("import").flow(step1()).end().build();
   }
 
-  //  @Bean
-  //  public FlatFileItemReader<Person> reader() {
-  //    return new FlatFileItemReaderBuilder<Person>().name("timeSheetReader")
-  //        .resource(new ClassPathResource(
-  //            "timeSheet.csv")).delimited()
-  //        .names("id", "date", "projectName", "jobName", "employeeId", "emailId", "firstName",
-  //            "lastName", "workItem", "hours", "billingStatus", "approvalStatus", "description")
-
-  //        .targetType(Person.class).build();
-
-  //  }
-
-  //  @Bean
-  //  public JdbcBatchItemWriter<Person> writer(DataSource dataSource) {
-  //    return new JdbcBatchItemWriterBuilder<Person>().sql(
-  //            "INSERT INTO person(date,project_name, job_name, employee_id,  email_id,
-  // first_name,  last_name, work_item,  hours,  billing_status,  approval_status,  description)
-  // VALUES (  :date,  :projectName,  :jobName,  :employeeId, :emailId, :firstName,  :lastName,
-  // :workItem,  :hours,  :billingStatus,  :approvalStatus,  :description))")
-  //        .dataSource(dataSource).beanMapped().build();
-  //  }
-  //
-  //  @Bean
-  //  public Job importUserJob(JobRepository jobRepository, Step step1,
-  //      JobCompletionNotificationListener listener) {
-  //    return new JobBuilder("importUserJob", jobRepository)
-  //        .listener(listener)
-  //        .start(step1)
-  //        .build();
-  //  }
-  //
-  //  @Bean
-  //  public Step step1(JobRepository jobRepository, DataSourceTransactionManager
-  // transactionManager,
-  //      FlatFileItemReader<Person> reader, PersonItemProcessor processor,
-  //      JdbcBatchItemWriter<Person> writer) {
-  //    return new StepBuilder("step1", jobRepository)
-  //        .<Person, Person>chunk(3, transactionManager)
-  //        .reader(reader)
-  //        .processor(processor)
-  //        .writer(writer)
-  //        .build();
-  //  }
+  @Bean
+  public TaskExecutor taskExecutor(){
+    SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor();
+    executor.setConcurrencyLimit(10);
+    return executor;
+  }
 
 }

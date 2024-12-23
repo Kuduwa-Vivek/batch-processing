@@ -1,5 +1,7 @@
 package com.appt.auth.Authentication.contoller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -21,16 +23,20 @@ public class JobController {
 
   @Autowired private Job job;
 
+  private static final Logger logger = LoggerFactory.getLogger(JobController.class);
+
   @PostMapping("/import")
   public void importCsvToDatabase() {
     JobParameters jobParameters =
         new JobParametersBuilder().addLong("startAt", System.currentTimeMillis()).toJobParameters();
 
     try{
+      logger.info("Starting job with parameters: {}", jobParameters);
       jobLauncher.run(job, jobParameters);
+      logger.info("Job executed successfully.");
     } catch (JobInstanceAlreadyCompleteException | JobExecutionAlreadyRunningException |
              JobParametersInvalidException | JobRestartException e) {
-      e.printStackTrace();
+      logger.error("An error occurred while executing thr job: {}", e.getMessage(),e);
     }
   }
 }
